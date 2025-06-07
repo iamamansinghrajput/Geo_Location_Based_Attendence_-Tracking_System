@@ -8,6 +8,7 @@ app.use(express.json());
 
 
 require("./config/conn");
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
