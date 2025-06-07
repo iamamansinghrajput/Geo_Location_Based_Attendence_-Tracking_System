@@ -2,8 +2,7 @@ const mangooes = require('mangoose');
 let MonthlyWorkAttendanceReportSchema = new mangooes.schema (
     {
         UserId : {
-            type: mangooes.schema.Types.ObjectId,
-            ref: 'User',
+            type: String,
             required: true
         },
         Month_Report : {
