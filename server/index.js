@@ -5,8 +5,7 @@ const app = express();
 const port = 4000;
 
 app.use(express.json());
-app.use('/register', authenticationRoutes);
-app.use('/login', authenticationRoutes);
+app.use('/api', authenticationRoutes);
 
 
 require("./config/conn");

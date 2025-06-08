@@ -30,7 +30,7 @@ api.post("/register", async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     password = hashedPassword;
 
-    const user = new User({
+    const user = new Userr({
       userName,
        firstName,
        lastName,
@@ -59,14 +59,14 @@ api.post("/login", async (req, res) => {
   let { email, password } = req.body;
 
   try {
-    const existinguser = await userr.find({ email: email });
+    const existinguser = await Userr.find({ email: email });
         if(existinguser.length===0){
             res.json("user not found");
             return ;
         }
     let gotuser=existinguser[0];
         let pass=gotuser.password;
-        console.log(pass);
+
     if (gotuser.status !== "approved") {
       return res.status(403).json({ message: "User not approved by admin" });
     }
@@ -77,7 +77,14 @@ api.post("/login", async (req, res) => {
     }
 
     const token = jwt.sign({id:existinguser[0]._id}, 'aman', { expiresIn: '1h' });
-    res.json(token);
+    res.cookie("token", token, {
+          httpOnly: true,
+          secure: true,                  // required for cross-site cookies over HTTPS
+          sameSite: 'none'  // Enable secure flag in production
+      });
+        res.json({
+          gotuser
+        })
 
   } catch (err) {
     console.log(err);
