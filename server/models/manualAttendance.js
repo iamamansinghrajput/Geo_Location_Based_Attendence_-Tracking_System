@@ -33,7 +33,7 @@ let ManualAttendanceSchema = new mongoose.Schema(
             type: Number   // in hours or minutes (your choice)
         },
         status : {
-            type: String ['Pending','Approved','Rejected'],
+            type: String,
             default: 'Pending'
         },
         createdAt : {

@@ -18,7 +18,7 @@ const EmployeeLeaveRequestSchema = new mongoose.Schema(
             required: true
         },
         approvalStatus : {
-            type: String ['Pending', 'Approved', 'Rejected'],
+            type: String,
             default: 'Pending'
         },
         adminSendNote : {
