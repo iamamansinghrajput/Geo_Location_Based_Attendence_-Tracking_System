@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 const Companyschema = new mongoose.Schema({
 
-    comname:{
+    name:{
         type: String,
         required: true,
     },
-    comusername:{
+    userName:{
         type: String,
         required: true,
         unique: true,
@@ -15,11 +15,11 @@ const Companyschema = new mongoose.Schema({
        type: String,
         required: true,
     },
-    ownername: {
+    ownerName: {
         type: String,
         required: true,
     },
-    comlocation: {
+    location: {
         latitude: {
             type: Number,
             required: true,

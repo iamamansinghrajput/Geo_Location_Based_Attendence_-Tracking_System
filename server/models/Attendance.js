@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const AttendanceSchema = new mongoose.Schema({
   
-username: {
+userName: {
     type: String,
     required: true,
   },
@@ -10,7 +10,7 @@ username: {
     type: date,
     required: true,
   },
-  locationlogs: [
+  locationLogs: [
     {
         type: {
             type: String,
@@ -29,7 +29,7 @@ username: {
         }
    }
   ],
-  locationname: {
+  locationName: {
     type: [string],
   },
 
