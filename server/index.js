@@ -1,11 +1,17 @@
-// index.js
-const express = require("express");
+const express = require('express');
+const authenticationRoutes = require("./routers/AuthenticationRoutes")
+const employeeRoutes =require("./routers/EmployeeRoutes")
+const managerRoutes =require("./routers/ManagerRoutes")
 const leaveRequestRoutes = require("./routes/leaveRequestRoutes");
+
 
 const app = express();
 const port = 4000;
 
 app.use(express.json());
+app.use('/api', authenticationRoutes);
+app.use('/api',employeeRoutes );
+app.use('/api',managerRoutes)
 
 require("./config/conn");
 
