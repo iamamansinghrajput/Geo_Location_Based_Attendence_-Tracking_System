@@ -1,7 +1,7 @@
 const express = require('express');
-const authenticationRoutes = require("./routers/AuthenticationRoutes")
-const employeeRoutes =require("./routers/EmployeeRoutes")
-const managerRoutes =require("./routers/ManagerRoutes")
+const authenticationRoutes = require("./routes/AuthenticationRoutes")
+const employeeRoutes =require("./routes/EmployeeRoutes")
+const managerRoutes =require("./routes/ManagerRoutes")
 const leaveRequestRoutes = require("./routes/leaveRequestRoutes");
 
 

@@ -1,6 +1,6 @@
     const express = require("express");
     const api =express.Router();
-    const pendingRegistration = require("../controller/EmployeeController")
+    const pendingRegistration = require("../controllers/EmployeeController")
 
     api.get("/GetPendingRegistration",pendingRegistration );
      
