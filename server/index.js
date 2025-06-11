@@ -3,7 +3,8 @@ const authenticationRoutes = require("./routes/AuthenticationRoutes")
 const employeeRoutes =require("./routes/EmployeeRoutes")
 const managerRoutes =require("./routes/ManagerRoutes")
 const leaveRequestRoutes = require("./routes/leaveRequestRoutes");
-
+const adminRoutes = require("./routes/AdminRoutes");
+const genralDataRoutes =require("./routes/GenralDataRoutes")
 
 const app = express();
 const port = 4000;
@@ -12,11 +13,12 @@ app.use(express.json());
 app.use('/api', authenticationRoutes);
 app.use('/api',employeeRoutes );
 app.use('/api',managerRoutes)
+app.use('/api', leaveRequestRoutes);
+app.use('/api',adminRoutes);
+app.use('/api',genralDataRoutes);
+
 
 require("./config/conn");
-
-app.use('/api', leaveRequestRoutes);
-
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
