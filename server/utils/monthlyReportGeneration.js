@@ -9,9 +9,10 @@ async function monthlyReportGeneration (req, res) {
         let userDetailsReport = await UserActivation.find();
 
         for(let user of userDetailsReport) {
+
             try {
                 let newEachUserReport = new monthlyAttendanceReport ( {
-                    username: user.username,
+                    userName: user.userName,
                     month,
                     year,
                     leaveAvailable: 5,
@@ -22,12 +23,12 @@ async function monthlyReportGeneration (req, res) {
                 } ) ;
 
                 await newEachUserReport.save();
-                console.log("Report is Created for ${user.username}");
+                console.log(`Report is Created for ${user.userName}`);
                 console.log(newEachUserReport);
                 //  res.json("Your data is saved successfully");
             }
             catch (error) {
-                res.json("Report is already exist of user ${user.username}", error);
+                res.json(`Report is already exist of user ${user.userName}`, error);
             }
         }
         res.json("Monthly Report of all Users is Generated Successfully");

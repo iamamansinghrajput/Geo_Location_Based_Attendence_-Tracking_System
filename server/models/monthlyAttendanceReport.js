@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 let MonthlyAttendanceReportSchema = new mongoose.Schema (
     {
-        userId : {
-            type: String,
-            required: true
-        },
         userName : {
             type: String,
             required: true
@@ -31,17 +27,13 @@ let MonthlyAttendanceReportSchema = new mongoose.Schema (
             default: []
         },
         leaveAvailable : {          //  Number of available leaves in a month
-            type: [String],
+            type: Number,
             default: 5
         },
         leavesType : {
             type: [String],     // It srore data like ["Fever","Family_Trip"]
         },
         createdAt : {
-            type: Date,
-            default: Date.now
-        },
-        updatedAt : {
             type: Date,
             default: Date.now
         }
