@@ -55,7 +55,7 @@ role: {
 },
 status: {
     type: String,
-    enum: ['pending', 'approved', 'rejected'],
+    enum: ['pending', 'approved', 'rejected','Terminated'],
     default: 'pending'
 },
 

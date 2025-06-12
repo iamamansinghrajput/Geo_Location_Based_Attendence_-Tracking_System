@@ -1,35 +1,26 @@
 const mongoose = require('mongoose');
 
 const workingCalendarSchema = new mongoose.Schema({
-  companyId: {
-    type: string,
-    required: true
-  },
-  year: { 
-    type: number,
+ year: { 
+    type: Number,
     required: true
   }, 
   month: {
-    type: string,
+    type: String,
     required: true
   },
   dayCalander: [
     {
-         date: {
-            type: Date,
-            required: true,
-            unique: false
-        },
-        dayType: {
-            type: String,
-            required: true
-        },
-        title: {
-            type: String ,
-        },
-        description: {
-            type: String ,
-        }
+      date: {
+        type: Date,
+      },
+      dayType: {
+          type: Number,
+          enum : [0, 1],
+         },
+      title: {
+        type: String
+      }
     }
   ],
   createdAt: {
