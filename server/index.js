@@ -1,21 +1,27 @@
-// index.js
-const express = require("express");
+const express = require('express');
+const authenticationRoutes = require("./routes/AuthenticationRoutes")
+const employeeRoutes =require("./routes/EmployeeRoutes")
+const managerRoutes =require("./routes/ManagerRoutes")
 const leaveRequestRoutes = require("./routes/leaveRequestRoutes");
-//
 const monthlyReportRoutes = require("./routes/monthlyReportRoutes");
+const adminRoutes = require("./routes/AdminRoutes");
+const genralDataRoutes =require("./routes/GenralDataRoutes")
 
 
 const app = express();
 const port = 4000;
 
 app.use(express.json());
-
-require("./config/conn");
-
+app.use('/api', authenticationRoutes);
+app.use('/api',employeeRoutes );
+app.use('/api',managerRoutes)
 app.use('/api', leaveRequestRoutes);
 app.use('/api', monthlyReportRoutes);
+app.use('/api',adminRoutes);
+app.use('/api',genralDataRoutes);
 
 
+require("./config/conn");
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
