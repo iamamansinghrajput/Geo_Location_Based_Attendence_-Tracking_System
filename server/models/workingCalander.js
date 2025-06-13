@@ -16,7 +16,7 @@ const workingCalendarSchema = new mongoose.Schema({
       },
       dayType: {
           type: Number,
-          enum : [0, 1],
+          enum : [0, 1], //1 is workingday
          },
       title: {
         type: String

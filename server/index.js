@@ -5,8 +5,8 @@ const managerRoutes =require("./routes/ManagerRoutes")
 const leaveRequestRoutes = require("./routes/leaveRequestRoutes");
 const monthlyReportRoutes = require("./routes/monthlyReportRoutes");
 const adminRoutes = require("./routes/AdminRoutes");
-const genralDataRoutes =require("./routes/GenralDataRoutes")
-
+const genralDataRoutes =require("./routes/GenralDataRoutes");
+const attendanceRoutes=require("./routes/AttendanceRoutes");
 
 const app = express();
 const port = 4000;
@@ -19,10 +19,10 @@ app.use('/api', leaveRequestRoutes);
 app.use('/api', monthlyReportRoutes);
 app.use('/api',adminRoutes);
 app.use('/api',genralDataRoutes);
+app.use('/api',attendanceRoutes);
 
 
 require("./config/conn");
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-// hi i am sushant
