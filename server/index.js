@@ -3,7 +3,8 @@ const express = require("express");
 const leaveRequestRoutes = require("./routes/leaveRequestRoutes");
 //
 const monthlyReportRoutes = require("./routes/monthlyReportRoutes");
-
+//
+const userMonthReport = require("./routes/userMonthReport")
 
 const app = express();
 const port = 4000;
@@ -14,6 +15,7 @@ require("./config/conn");
 
 app.use('/api', leaveRequestRoutes);
 app.use('/api', monthlyReportRoutes);
+app.use('/api',userMonthReport);
 
 
 app.listen(port, () => {

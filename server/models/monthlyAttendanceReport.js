@@ -42,14 +42,3 @@ let MonthlyAttendanceReportSchema = new mongoose.Schema (
 let monthlyAttendanceReport = mongoose.model('monthlyAttendanceReport', MonthlyAttendanceReportSchema);
 module.exports = monthlyAttendanceReport;
 
-
-
-
-
-
-
-
-
-
-
-

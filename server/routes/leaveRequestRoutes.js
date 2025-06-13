@@ -1,6 +1,6 @@
 const express = require("express");
 const api = express.Router();
-const { employeeAddLeaveRequest, seeAllLeaveRequest, findLeaveRequestByProvidedId, approveLeaveRequest, rejectLeaveRequest, deleteLeaveRequest} = require("../controllers/leaveRequestControllers")
+const { employeeAddLeaveRequest, seeAllLeaveRequest, findLeaveRequestByProvidedId, approveLeaveRequest, rejectLeaveRequest, deleteLeaveRequest} = require("../controllers/leaveRequestControllers");
 
 api.post('/addLeaveRequest', employeeAddLeaveRequest);
 api.get('/getAllLeaveRequest', seeAllLeaveRequest);
