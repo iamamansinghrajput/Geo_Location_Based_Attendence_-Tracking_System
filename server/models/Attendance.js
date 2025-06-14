@@ -9,35 +9,37 @@ const AttendanceSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  status: {
+    type: [String],
+    enum: ['check-in', 'check-out'],
+    required: true,
+  },
+  time: {
+    type: Date,
+    required: true,
+  },
   locationLogs: [
     {
-      type: {
-        type: String,
-        enum: ['check-in', 'check-out'],
+      latitude: {
+        type: Number,
+        required: true,
       },
-      time: {
-        type: Date,
-      },
-      location: {
-        latitude: {
-          type: Number,
-        },
-        longitude: {
-          type: Number,
-        }
+      longitude: {
+        type: Number,
+        required: true,
       }
     }
   ],
   locationName: {
-    type: [String],
+    type: String,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
+  month: {
+    type: String,
+    required: true
   },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
+  year: {
+    type: String,
+    required: true
   }
 });
 
