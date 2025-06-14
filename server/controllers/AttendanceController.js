@@ -76,13 +76,11 @@ async function markAttendances(req, res) {
   }
 }
 
+//get all data
+
 async function getAllAttendance(req, res) {
-    const {userName} =req.body;
     try {
-        const allAttendance = await Attendances.find({userName});
-        if(!allAttendance){
-           return res.json("user not found");
-        }
+        const allAttendance = await Attendances.find({});
         res.json(allAttendance);
         
     } catch (error) {
@@ -91,16 +89,17 @@ async function getAllAttendance(req, res) {
     }
 }
 
+//Get the all attendance entries from database of  month
 
 async function monthAttendance (req, res) {
-  const {year, month } = req.body;
+  const {month} = req.body;
 
-  if (!year || !month) {
+  if (!month) {
     return res.status(400).json({ message: "Missing required fields" });
   }
 
   try {
-    const existing = await Attendances.findOne({year, month });
+    const existing = await Attendances.findOne({month});
     if (!existing) {
       return res.status(400).json({ message: "Attendence not exists for this month" });
     }
@@ -112,5 +111,85 @@ async function monthAttendance (req, res) {
   }
 }
 
+//Get the all attendance entries from database of a perticular year
+async function yearAttendances (req, res) {
+  const {year} = req.body;
 
-module.exports = { markAttendances,getAllAttendance,monthAttendance };
+  if (!year) {
+    return res.status(400).json({ message: " yrar not find " });
+  }
+
+  try {
+    const yearAttendance = await Attendances.findOne({year});
+    if (!yearAttendance) {
+      return res.status(400).json({ message: "Attendence not exists for this year" });
+    }
+    res.status(201).json({yearAttendance});
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
+
+async function getUserDatas(req, res) {
+    const {userName} =req.body;
+    try {
+        const getUserData = await Attendances.find({userName});
+        if(!getUserData){
+           return res.json("user not found");
+        }
+        res.json(getUserData);
+        
+    } catch (error) {
+        res.json(error);
+        res.json("internal server error")
+    }
+}
+
+//Get the all attendance entries from database by month and year
+async function monthYearAttendance (req, res) {
+  const {month,year} = req.body;
+
+  if (!month || !year) {
+    return res.status(400).json({ message: "Missing required fields" });
+  }
+
+  try {
+    const existing = await Attendances.findOne({month,year});
+    if (!existing) {
+      return res.status(400).json({ message: "Attendence not exists for this month" });
+    }
+    res.status(201).json({existing});
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
+//Get all attendance by username with month and year
+async function monthYearUsername (req, res) {
+  const {userName,month,year} = req.body;
+
+  if (!userName|| !month || !year) {
+    return res.status(400).json({ message: "Missing required fields" });
+  }
+
+  try {
+    const existing = await Attendances.findOne({userName,month,year});
+    if (!existing) {
+      return res.status(400).json({ message: "Attendence not exists for this user" });
+    }
+    res.status(201).json({existing});
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
+
+module.exports = { markAttendances,getAllAttendance,monthAttendance,yearAttendances,getUserDatas,
+        monthYearAttendance,monthYearUsername };
