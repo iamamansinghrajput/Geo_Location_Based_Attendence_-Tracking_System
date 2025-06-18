@@ -15,8 +15,9 @@ const AttendanceSchema = new mongoose.Schema({
     required: true,
   },
   time: {
-    type: Date,
+    type: [Date],
     required: true,
+    default: Date.now,
   },
   locationLogs: [
     {

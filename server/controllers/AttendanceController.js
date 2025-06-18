@@ -51,15 +51,13 @@ async function markAttendances(req, res) {
     const distance = geolib.getDistance(userLocation, geofenceCenter);
     const isInside = distance <= geofenceRadius;
 
-    if (!isInside) {
-      return res.status(403).json({ message: "User is outside the geofenced area" });
-    }
+   const attendanceStatus = isInside ? 'check-in' : 'check-out';
 
     // Step 4: Save attendance
     const attendance = new Attendances({
       userName,
       date,
-      status: "check-in",
+      status: attendanceStatus,
       time: new Date(time),
       locationLogs,
       locationName,
@@ -132,7 +130,7 @@ async function yearAttendances (req, res) {
   }
 }
 
-
+//Get the all attendance entries from database of a userName
 async function getUserDatas(req, res) {
     const {userName} =req.body;
     try {

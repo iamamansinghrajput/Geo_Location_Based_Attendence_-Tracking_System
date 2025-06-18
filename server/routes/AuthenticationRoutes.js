@@ -17,7 +17,6 @@ api.post("/register", async (req, res) => {
        skills,
        presentAddress,
        permanentAddress,
-       role,
        status  } = req.body;
 
   try {
@@ -42,7 +41,6 @@ api.post("/register", async (req, res) => {
        skills,
        presentAddress,
        permanentAddress,
-       role,
        status
     });
 
