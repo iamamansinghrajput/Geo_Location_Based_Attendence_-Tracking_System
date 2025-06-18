@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const workingCalendarSchema = new mongoose.Schema({
- year: { 
+year: { 
     type: Number,
     required: true
   }, 
@@ -17,7 +17,7 @@ const workingCalendarSchema = new mongoose.Schema({
       dayType: {
           type: Number,
           enum : [0, 1],
-         },
+      },
       title: {
         type: String
       }
