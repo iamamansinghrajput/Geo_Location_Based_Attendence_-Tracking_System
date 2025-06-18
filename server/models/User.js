@@ -51,7 +51,9 @@ permanentAddress: {
     type: String,
 },
 role: {
-    type: String,
+  type: String,
+  enum: ['admin', 'employ'],
+  default: 'employ',
 },
 status: {
     type: String,

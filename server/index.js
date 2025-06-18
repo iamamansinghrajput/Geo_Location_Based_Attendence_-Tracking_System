@@ -9,7 +9,7 @@ const userMonthReport = require("./routes/userMonthReport")
 const adminRoutes = require("./routes/AdminRoutes");
 const genralDataRoutes =require("./routes/GenralDataRoutes");
 const attendanceRoutes=require("./routes/AttendanceRoutes");
-
+const noticeRouter =require("./routes/NoticeRoutes");
 
 const app = express();
 const port = 4000;
@@ -25,6 +25,7 @@ app.use('/api',userMonthReport);
 app.use('/api',adminRoutes);
 app.use('/api',genralDataRoutes);
 app.use('/api',attendanceRoutes);
+app.use('/api',noticeRouter);
 
 
 

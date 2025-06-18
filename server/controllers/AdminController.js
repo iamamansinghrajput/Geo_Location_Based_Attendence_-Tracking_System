@@ -1,5 +1,5 @@
 const Calanders = require("../models/workingCalander");
-
+const Userr = require("../models/User");
 //Create an api to create monthly attendance callender
 
 async function monthlyCalanders(req, res){
@@ -73,4 +73,25 @@ async function deletecalender(req, res) {
     }
 }
 
-module.exports={monthlyCalanders,updateCalender,deletecalender};
+async function changeRoles(req,res) {
+  const {userName} = req.body;
+  try {
+    const changeRole = await Userr.findOne({userName});
+    if(!changeRole){
+      return res.status(400).json("user not found");
+    }
+    if(changeRole.role==="admin"){
+      return res.json("user is already admin");
+    }
+    changeRole.role="admin";
+    await changeRole.save();
+    res.json("user change to admin");
+    
+  } catch (error) {
+    console.error(err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+  
+}
+
+module.exports={monthlyCalanders,updateCalender,deletecalender,changeRoles};
