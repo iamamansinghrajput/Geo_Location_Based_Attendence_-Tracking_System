@@ -4,12 +4,11 @@ const employeeRoutes =require("./routes/EmployeeRoutes")
 const managerRoutes =require("./routes/ManagerRoutes")
 const leaveRequestRoutes = require("./routes/leaveRequestRoutes");
 const monthlyReportRoutes = require("./routes/monthlyReportRoutes");
-
+const resignationRoutes = require("./routes/resignationRoutes");
 const userMonthReport = require("./routes/userMonthReport")
 const adminRoutes = require("./routes/AdminRoutes");
 const genralDataRoutes =require("./routes/GenralDataRoutes");
 const attendanceRoutes=require("./routes/AttendanceRoutes");
-
 
 
 const app = express();
@@ -21,6 +20,7 @@ app.use('/api',employeeRoutes );
 app.use('/api',managerRoutes)
 app.use('/api', leaveRequestRoutes);
 app.use('/api', monthlyReportRoutes);
+app.use('/api', resignationRoutes);
 app.use('/api',userMonthReport);
 app.use('/api',adminRoutes);
 app.use('/api',genralDataRoutes);
