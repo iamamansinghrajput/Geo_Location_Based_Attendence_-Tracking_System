@@ -7,7 +7,9 @@ const monthlyReportRoutes = require("./routes/monthlyReportRoutes");
 const resignationRoutes = require("./routes/resignationRoutes");
 const userMonthReport = require("./routes/userMonthReport")
 const adminRoutes = require("./routes/AdminRoutes");
-const genralDataRoutes =require("./routes/GenralDataRoutes")
+const genralDataRoutes =require("./routes/GenralDataRoutes");
+const attendanceRoutes=require("./routes/AttendanceRoutes");
+
 
 const app = express();
 const port = 4000;
@@ -19,11 +21,12 @@ app.use('/api',managerRoutes)
 app.use('/api', leaveRequestRoutes);
 app.use('/api', monthlyReportRoutes);
 app.use('/api', resignationRoutes);
-
 app.use('/api',userMonthReport);
-
 app.use('/api',adminRoutes);
 app.use('/api',genralDataRoutes);
+app.use('/api',attendanceRoutes);
+
+
 
 require("./config/conn");
 app.listen(port, () => {

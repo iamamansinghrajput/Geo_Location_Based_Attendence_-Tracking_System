@@ -18,6 +18,7 @@ year: {
           type: Number,
           enum : [0, 1],
       },
+
       title: {
         type: String
       }
