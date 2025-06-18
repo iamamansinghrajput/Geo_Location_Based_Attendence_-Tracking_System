@@ -3,5 +3,5 @@
     const pendingRegistration = require("../controllers/EmployeeController")
 
     api.get("/GetPendingRegistration",pendingRegistration );
-     
+    
     module.exports =api;
