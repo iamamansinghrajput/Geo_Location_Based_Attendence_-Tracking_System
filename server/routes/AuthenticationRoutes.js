@@ -16,8 +16,8 @@ api.post("/register", async (req, res) => {
        qualification,
        skills,
        presentAddress,
-       permanentAddress,
-       status  } = req.body;
+       permanentAddress
+        } = req.body;
 
   try {
     const existingUser = await Userr.find({ email: email });
@@ -41,7 +41,7 @@ api.post("/register", async (req, res) => {
        skills,
        presentAddress,
        permanentAddress,
-       status
+       status: "pending",
     });
 
     await user.save();

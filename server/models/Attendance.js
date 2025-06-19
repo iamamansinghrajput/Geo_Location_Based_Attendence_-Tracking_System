@@ -8,6 +8,7 @@ const AttendanceSchema = new mongoose.Schema({
   date: {
     type: Date,
     required: true,
+    unique: true,
   },
   status: {
     type: [String],
@@ -17,7 +18,6 @@ const AttendanceSchema = new mongoose.Schema({
   time: {
     type: [Date],
     required: true,
-    default: Date.now,
   },
   locationLogs: [
     {
