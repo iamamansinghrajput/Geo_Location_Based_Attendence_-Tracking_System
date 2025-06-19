@@ -34,7 +34,7 @@ async function getAllRegistration (req, res) {
 
 // This function for finding particualar User Registration through UserName
 async function particularUserRegistration (req, res) {
-    let { userName } = res.params;
+    let { userName } = req.params;
     try {
         let particualarRegistration = await resignationLetter.find( { userName } );
         res.json(" Get Particualar Registration of Users ", particualarRegistration);
