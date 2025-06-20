@@ -1,5 +1,6 @@
 const userr = require("../models/User");
 
+//create an api to get the list of all pending employee registration
 async function workingEmployes(req, res) {
     try {
         const workingEmploye = await userr.find({status:"approved"});

@@ -52,7 +52,7 @@ permanentAddress: {
 },
 role: {
   type: String,
-  enum: ['admin', 'employ'],
+  enum: ['admin', 'employ','manager'],
   default: 'employ',
 },
 status: {
