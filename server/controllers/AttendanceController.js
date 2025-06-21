@@ -139,7 +139,7 @@ async function getUserDatas(req, res) {
     try {
         const getUserData = await Attendances.find({userName});
         if(!getUserData){
-           return res.json("user not found");
+            return res.json("user not found");
         }
         res.json(getUserData);
         

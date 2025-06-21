@@ -12,7 +12,7 @@ const Companyschema = new mongoose.Schema({
         unique: true,
     },
     comaddress: {
-       type: String,
+        type: String,
         required: true,
     },
     ownerName: {
