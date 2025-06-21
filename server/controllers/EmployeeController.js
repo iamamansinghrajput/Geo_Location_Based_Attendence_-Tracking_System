@@ -1,5 +1,5 @@
 const userr = require("../models/User");
-
+//create an api to get the list of all pending employee registration
 async function pendingRegistration(req, res) {
     try {
         const pendingUsers = await userr.find({status:"pending"});

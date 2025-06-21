@@ -2,6 +2,7 @@ const { response } = require("express");
 const Attendances = require("../models/Attendance");
 const geolib = require("geolib");
 
+//Create an api to continuous time, status and location in a particular users particular days attendance
 async function liveTracking(req, res) {
   const { userName, date, time, locationLogs } = req.body;
 
