@@ -10,67 +10,57 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
   lastName: {
     type: String,
   },
-
   email: {
     type: String,
     required: true,
-    
   },
   number: {
     type: Number,
     required: true,
-    
   },
   password: {
     type: String,
     required: true,
-    
   },
   dob: {
     type: String,
     required: true,
-    
   },
-
   qualification: {
     type: [String],
   },
-
   skills: {
     type: [String],
   },
-
-presentAddress: {
+  presentAddress: {
     type: String,
-},
-permanentAddress: {
+  },
+  permanentAddress: {
     type: String,
-},
-role: {
-  type: String,
-  enum: ['admin', 'employ','manager'],
-  default: 'employ',
-},
-status: {
+  },
+  role: {
     type: String,
-    enum: ['pending', 'approved', 'rejected','Terminated'],
+    enum: ['admin', 'employ', 'manager'],
+    default: 'employ',
+  },
+  status: {
+    type: String,
+    enum: ['pending', 'approved', 'rejected', 'Terminated'],
     default: 'pending'
-},
-
-createdAt: {
+  },
+  createdAt: {
     type: Date,
     default: Date.now,
   },
-updatedAt:{
+  updatedAt: {
     type: Date,
     default: Date.now,
-}
-
+  }
 });
 
-const User = mongoose.model('User', UserSchema);
+// ✅ Fix: Use correct variable name (UserSchema)
+const User = mongoose.models.User || mongoose.model('User', UserSchema);
 module.exports = User;
