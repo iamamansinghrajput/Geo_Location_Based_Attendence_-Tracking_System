@@ -12,7 +12,7 @@ const adminRoutes = require("./routes/AdminRoutes");
 const genralDataRoutes =require("./routes/GenralDataRoutes");
 const attendanceRoutes=require("./routes/AttendanceRoutes");
 const noticeRouter =require("./routes/NoticeRoutes");
-
+const trackingRoutes =require("./routes/TrackingRoutes")
 const app = express();
 const port = 4000;
 
@@ -30,6 +30,7 @@ app.use('/api',adminRoutes);
 app.use('/api',genralDataRoutes);
 app.use('/api',attendanceRoutes);
 app.use('/api',noticeRouter);
+app.use('/api',trackingRoutes);
 
 
 

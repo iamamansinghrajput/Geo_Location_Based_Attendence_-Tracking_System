@@ -53,7 +53,10 @@ async function markAttendances(req, res) {
 
    const attendanceStatus = isInside ? 'check-in' : 'check-out';
 
-    // Step 4: Save attendance
+    let exist = await Attendances.findOne({ userName, date });
+    if (exist) {
+      return res.status(400).json({ message: "Attendance already exists for this user on this date" });
+    }
     const attendance = new Attendances({
       userName,
       date,

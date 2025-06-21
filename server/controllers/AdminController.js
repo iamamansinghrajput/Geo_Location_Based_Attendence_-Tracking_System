@@ -74,18 +74,15 @@ async function deletecalender(req, res) {
 }
 
 async function changeRoles(req,res) {
-  const {userName} = req.body;
+  const {userName,role} = req.body;
   try {
     const changeRole = await Userr.findOne({userName});
     if(!changeRole){
       return res.status(400).json("user not found");
     }
-    if(changeRole.role==="admin"){
-      return res.json("user is already admin");
-    }
-    changeRole.role="admin";
+    changeRole.role=role;
     await changeRole.save();
-    res.json("user change to admin");
+    res.json("Role change succesfully");
     
   } catch (error) {
     console.error(err);
