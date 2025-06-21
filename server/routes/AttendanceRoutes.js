@@ -1,7 +1,7 @@
 const express =require("express");
-const api =express.Router();
-const {markAttendances,getAllAttendance,monthAttendance,yearAttendances,
-            getUserDatas,monthYearAttendance,monthYearUsername} = require("../controllers/AttendanceController");
+const api = express.Router();
+const { markAttendances, getAllAttendance, monthAttendance, yearAttendances, 
+            getUserDatas, monthYearAttendance, monthYearUsername } = require("../controllers/AttendanceController");
 
 api.post("/markAttendance",markAttendances);
 api.get("/getAllAttendance",getAllAttendance);
