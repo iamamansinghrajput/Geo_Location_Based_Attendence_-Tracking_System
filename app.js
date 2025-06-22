@@ -1,7 +1,19 @@
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require("cookie-parser");
-const base = require('./routes/Base'); 
+const authenticationRoutes = require("./routes/AuthenticationRoutes")
+const employeeRoutes =require("./routes/EmployeeRoutes")
+const managerRoutes =require("./routes/ManagerRoutes")
+const leaveRequestRoutes = require("./routes/leaveRequestRoutes");
+const monthlyReportRoutes = require("./routes/monthlyReportRoutes");
+const resignationRoutes = require("./routes/resignationRoutes");
+const base = require("./routes/Base")
+const userMonthReport = require("./routes/userMonthReport")
+const adminRoutes = require("./routes/AdminRoutes");
+const genralDataRoutes =require("./routes/GenralDataRoutes");
+const attendanceRoutes=require("./routes/AttendanceRoutes");
+const noticeRouter =require("./routes/NoticeRoutes");
+const trackingRoutes =require("./routes/TrackingRoutes")
 const app = express(); 
 const port = 3005;
  
