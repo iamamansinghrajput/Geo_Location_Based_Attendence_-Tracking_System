@@ -11,6 +11,7 @@ const base = require("./Routes/Base")
 const userMonthReport = require("./Routes/userMonthReport")
 //const adminRoutes = require("./Routes/AdminRoutes");
 //const genralDataRoutes =require("./Routes/GenralDataRoutes");
+const attendanceRoutes=require("./routes/AttendanceRoutes");
 const app = express();
  
 const port = 3005;
