@@ -10,7 +10,7 @@ const resignationRoutes = require("./Routes/resignationRoutes");
 const base = require("./Routes/Base")
 const userMonthReport = require("./Routes/userMonthReport")
 const adminRoutes = require("./Routes/AdminRoutes");
-const genralDataRoutes =require("./Routes/GenralDataRoutes");
+//const genralDataRoutes =require("./Routes/GenralDataRoutes");
 const app = express();
  
 const port = 3005;
