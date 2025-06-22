@@ -12,7 +12,7 @@ const userMonthReport = require("./Routes/userMonthReport");
 //const adminRoutes = require("./Routes/AdminRoutes");
 //const genralDataRoutes =require("./Routes/GenralDataRoutes");
 //const attendanceRoutes=require("./routes/AttendanceRoutes");
-const noticeRouter =require("./routes/NoticeRoutes");
+//const noticeRouter =require("./routes/NoticeRoutes");
 const trackingRoutes =require("./routes/TrackingRoutes");
 const app = express();
  
