@@ -1,40 +1,25 @@
 const express = require('express');
-const authenticationRoutes = require("./routes/AuthenticationRoutes")
-const employeeRoutes =require("./routes/EmployeeRoutes")
-const managerRoutes =require("./routes/ManagerRoutes")
-const leaveRequestRoutes = require("./routes/leaveRequestRoutes");
-const monthlyReportRoutes = require("./routes/monthlyReportRoutes");
-const resignationRoutes = require("./routes/resignationRoutes");
-const base = require("./routes/Base")
-const userMonthReport = require("./routes/userMonthReport")
-const adminRoutes = require("./routes/AdminRoutes");
-const genralDataRoutes =require("./routes/GenralDataRoutes");
-const attendanceRoutes=require("./routes/AttendanceRoutes");
-const noticeRouter =require("./routes/NoticeRoutes");
-const trackingRoutes =require("./routes/TrackingRoutes")
-const app = express();
-const port = 4000;
-
+const addComponentName = require('./Routes/AddComponentName');
+const getComponentName = require('./Routes/GetComponetName');
+const cors = require('cors');
+const cookieParser = require("cookie-parser");
+const base = require('./Routes/base'); 
+const app = express(); 
+const port = 3005;
+ 
+app.use(cors({
+  origin: ["http://localhost:5173"], 
+  credentials: true,
+}));
 app.use(express.json());
+app.use(cookieParser());
+ 
+require("./db/conn");
 
 app.use('', base);
-app.use('/api', authenticationRoutes);
-app.use('/api',employeeRoutes );
-app.use('/api',managerRoutes)
-app.use('/api', leaveRequestRoutes);
-app.use('/api', monthlyReportRoutes);
-app.use('/api', resignationRoutes);
+app.use('/api', addComponentName);
+app.use('/api', getComponentName);
 
-app.use('/api',userMonthReport);
-app.use('/api',adminRoutes);
-app.use('/api',genralDataRoutes);
-app.use('/api',attendanceRoutes);
-app.use('/api',noticeRouter);
-app.use('/api',trackingRoutes);
-
-
-
-require("./config/conn");
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+app.listen(port, () =>{
+    console.log('Server Is running at localhost:'+port)
+})  
