@@ -8,12 +8,6 @@ const leaveRequestRoutes = require("./Routes/leaveRequestRoutes");
 const monthlyReportRoutes = require("./Routes/monthlyReportRoutes");
 const resignationRoutes = require("./Routes/resignationRoutes");
 const base = require("./Routes/Base")
-const userMonthReport = require("./Routes/userMonthReport")
-const adminRoutes = require("./Routes/AdminRoutes");
-const genralDataRoutes =require("./Routes/GenralDataRoutes");
-const attendanceRoutes=require("./Routes/AttendanceRoutes");
-const noticeRouter =require("./Routes/NoticeRoutes");
-const trackingRoutes =require("./Routes/TrackingRoutes")
 const app = express();
  
 const port = 3005;
