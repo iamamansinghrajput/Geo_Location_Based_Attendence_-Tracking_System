@@ -24,10 +24,24 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(cookieParser());
+
  
 require("./config/conn");
 
 app.use('', base);
+app.use('/api', authenticationRoutes);
+app.use('/api',employeeRoutes );
+app.use('/api',managerRoutes)
+app.use('/api', leaveRequestRoutes);
+app.use('/api', monthlyReportRoutes);
+app.use('/api', resignationRoutes);
+app.use('/api',userMonthReport);
+//app.use('/api',adminRoutes);
+//app.use('/api',genralDataRoutes);
+//app.use('/api',attendanceRoutes);
+//app.use('/api',noticeRouter);
+//app.use('/api',trackingRoutes);
+
 
 app.listen(port, () =>{
     console.log('Server Is running at localhost:'+port)
