@@ -5,7 +5,7 @@ const managerRoutes =require("./routes/ManagerRoutes")
 const leaveRequestRoutes = require("./routes/leaveRequestRoutes");
 const monthlyReportRoutes = require("./routes/monthlyReportRoutes");
 const resignationRoutes = require("./routes/resignationRoutes");
-
+const base = require("./routes/Base")
 const userMonthReport = require("./routes/userMonthReport")
 const adminRoutes = require("./routes/AdminRoutes");
 const genralDataRoutes =require("./routes/GenralDataRoutes");
@@ -17,9 +17,7 @@ const port = 4000;
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use('', base);
 app.use('/api', authenticationRoutes);
 app.use('/api',employeeRoutes );
 app.use('/api',managerRoutes)
