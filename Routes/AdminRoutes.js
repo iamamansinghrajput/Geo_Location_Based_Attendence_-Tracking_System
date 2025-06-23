@@ -1,7 +1,7 @@
 const express =require("express");
 const api =express.Router();
 const {monthlyCalanders,updateCalender,deletecalender,changeRoles} = require("../controllers/AdminController");
-const userAuthenticationValidation = require("../middleware/adminAuthentication");
+const userAuthenticationValidation = require("../Middleware/adminAuthentication");
 
 
 api.post("/addCalender", userAuthenticationValidation, monthlyCalanders);
