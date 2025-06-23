@@ -10,10 +10,10 @@ const resignationRoutes = require("./Routes/resignationRoutes");
 const base = require("./Routes/Base");
 const userMonthReport = require("./Routes/userMonthReport");
 const adminRoutes = require("./Routes/AdminRoutes");
-//const genralDataRoutes =require("./Routes/GenralDataRoutes");
-//const attendanceRoutes=require("./routes/AttendanceRoutes");
+const genralDataRoutes =require("./Routes/GenralDataRoutes");
+const attendanceRoutes=require("./routes/AttendanceRoutes");
 //const noticeRouter =require("./routes/NoticeRoutes");
-//const trackingRoutes =require("./routes/TrackingRoutes");
+const trackingRoutes =require("./routes/TrackingRoutes");
 const app = express();
  
 const port = 3005;
