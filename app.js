@@ -13,7 +13,7 @@ const adminRoutes = require("./Routes/AdminRoutes");
 const genralDataRoutes =require("./Routes/GenralDataRoutes");
 const attendanceRoutes=require("./routes/AttendanceRoutes");
 const noticeRouter =require("./routes/NoticeRoutes");
-const trackingRoutes =require("./routes/TrackingRoutes");
+const trackingRoutes =require("./Routes/TrackingRoutes");
 const app = express();
  
 const port = 3005;
@@ -36,11 +36,11 @@ app.use('/api', leaveRequestRoutes);
 app.use('/api', monthlyReportRoutes);
 app.use('/api', resignationRoutes);
 app.use('/api',userMonthReport);
-//app.use('/api',adminRoutes);
-//app.use('/api',genralDataRoutes);
-//app.use('/api',attendanceRoutes);
-//app.use('/api',noticeRouter);
-//app.use('/api',trackingRoutes);
+app.use('/api',adminRoutes);
+app.use('/api',genralDataRoutes);
+app.use('/api',attendanceRoutes);
+app.use('/api',noticeRouter);
+app.use('/api',trackingRoutes);
 
 
 app.listen(port, () =>{
