@@ -2,7 +2,7 @@ const express =require("express");
 const api = express.Router();
 const { markAttendances, getAllAttendance, monthAttendance, yearAttendances, 
             getUserDatas, monthYearAttendance, monthYearUsername } = require("../controllers/AttendanceController");
-const employeeMiddleware = require("../middleware/employeeAuthentication");
+const employeeMiddleware = require("../Middleware/employeeAuthentication");
 
 
 api.post("/markAttendance",employeeMiddleware,markAttendances);
