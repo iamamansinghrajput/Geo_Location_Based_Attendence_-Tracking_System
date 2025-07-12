@@ -62,7 +62,7 @@ api.post("/login", async (req, res) => {
             res.json("user not found");
             return ;
         }
-    let gotuser=existinguser[0];
+    const gotuser=existinguser[0];
         let pass=gotuser.password;
 
     if (gotuser.status !== "approved") {
@@ -80,9 +80,18 @@ api.post("/login", async (req, res) => {
           secure: true,                  // required for cross-site cookies over HTTPS
           sameSite: 'none'  // Enable secure flag in production
       });
-        res.json({
-          gotuser
-        })
+        return res.status(200).json({
+      message: "Login successful",
+      token,                       // 🔒 Send token in response for mobile clients
+      user: {
+        id: gotuser._id,
+        email: gotuser.email,
+        firstName: gotuser.firstName,
+        lastName: gotuser.lastName,
+        role: gotuser.role || "user", // if applicable
+        status: gotuser.status,
+      }
+    });
 
   } catch (err) {
     console.log(err);
