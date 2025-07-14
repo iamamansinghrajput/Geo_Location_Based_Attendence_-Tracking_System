@@ -8,9 +8,10 @@ const employeeLeaveRequest = require("../models/employeeLeaveRequest");
 // app.post('/addLeaveRequest', employeeAddLeaveRequest);
 async function employeeAddLeaveRequest (req, res) {
     try {
-        let { userId, title,leaveType,startingDate, endingDate, message, number} = req.body;
+        let { userId,userName, title,leaveType,startingDate, endingDate, message, number} = req.body;
         let leaveRequest = new employeeLeaveRequest ( {
             userId,
+            userName,
             title,
             leaveType,
             startingDate,
