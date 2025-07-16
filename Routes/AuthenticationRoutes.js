@@ -85,6 +85,7 @@ api.post("/login", async (req, res) => {
       token,                       // 🔒 Send token in response for mobile clients
       user: {
         id: gotuser._id,
+        userName: gotuser.userName,
         email: gotuser.email,
         firstName: gotuser.firstName,
         lastName: gotuser.lastName,
