@@ -191,6 +191,20 @@ async function monthYearUsername (req, res) {
   }
 }
 
+async function GetDataBYDay(req,res){
+  const {date}=req.body;
+  try {
+    const DataBYDay = await Attendances.find({date});
+    if(DataBYDay===0){
+      return res.status(400).json("day data not found ");
+    }
+    res.json(DataBYDay)
+  } catch (error) {
+     console.error(err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
 
 module.exports = { markAttendances,getAllAttendance,monthAttendance,yearAttendances,getUserDatas,
-        monthYearAttendance,monthYearUsername };
+        monthYearAttendance,monthYearUsername,GetDataBYDay };
