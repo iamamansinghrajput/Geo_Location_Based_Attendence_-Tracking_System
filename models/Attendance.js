@@ -6,7 +6,7 @@ const AttendanceSchema = new mongoose.Schema({
     required: true,
   },
   date: {
-    type: Date,
+    type: String,
     required: true,
     unique: true,
   },
@@ -16,7 +16,7 @@ const AttendanceSchema = new mongoose.Schema({
     required: true,
   },
   time: {
-    type: [Date],
+    type: [String],
     required: true,
   },
   locationLogs: [
