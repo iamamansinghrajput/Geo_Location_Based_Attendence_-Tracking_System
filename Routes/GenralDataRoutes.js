@@ -4,7 +4,7 @@ const {allcalenders,monthCalender,yearWeekend } = require("../controllers/Genral
 const employeeMiddleware = require("../Middleware/employeeAuthentication");
 
 api.get("/getAllCalender",allcalenders);
-api.post("/getCalender/:month",monthCalender);
+api.post("/getCalenders",monthCalender);
 api.post("/getWeekend",yearWeekend);
 
 module.exports=api;

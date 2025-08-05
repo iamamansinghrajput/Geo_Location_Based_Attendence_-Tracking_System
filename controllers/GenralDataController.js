@@ -14,7 +14,7 @@ async function allcalenders(req, res) {
 //Create an api to get 1 month calender.
 async function monthCalender (req, res) {
   const {year, month } = req.body;
-
+  console.log('Received Body:', req.body);
   if (!year || !month) {
     return res.status(400).json({ message: "Missing required fields" });
   }
@@ -24,7 +24,7 @@ async function monthCalender (req, res) {
     if (!existing) {
       return res.status(401).json({ message: "Calendar not exists for this month" });
     }
-    res.status(201).json({existing});
+    res.status(201).json(existing);
 
   } catch (err) {
     console.error(err);

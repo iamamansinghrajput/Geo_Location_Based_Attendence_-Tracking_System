@@ -14,18 +14,18 @@ async function markAttendances(req, res) {
   } = req.body;
 
   try {
-    // Validate required fields
-    if (!userName || !date || !time || !locationLogs || !month || !year) {
+    // Step 1: Validate input
+    if (!userName || !date || !time || !locationLogs?.length || !month || !year) {
       return res.status(400).json({ message: "Missing required fields" });
     }
 
-    // Step 1: Check if the calendar for the given month/year exists
+    // Step 2: Check for calendar entry
     const calendar = await Calenders.findOne({ month, year });
     if (!calendar) {
       return res.status(404).json({ message: "Working calendar not found" });
     }
 
-    // Step 2: Check if the selected date is a working day
+    // Step 3: Validate working day
     const inputDateStr = new Date(date).toDateString();
     const isWorkingDay = calendar.dayCalander.find(day => {
       const dayDateStr = new Date(day.date).toDateString();
@@ -36,32 +36,32 @@ async function markAttendances(req, res) {
       return res.status(400).json({ message: "Selected date is not a working day" });
     }
 
-    const geofenceCenter = {
-      latitude: 22.5726,
-      longitude: 88.3639
-    };
-
-    const geofenceRadius = 100; 
+    // Step 4: Validate user location
     const userLocation = locationLogs[0];
-
-    if (!userLocation || !userLocation.latitude || !userLocation.longitude) {
+    if (!userLocation?.latitude || !userLocation?.longitude) {
       return res.status(400).json({ message: "Invalid user location" });
     }
 
-    const distance = geolib.getDistance(userLocation, geofenceCenter);
-    const isInside = distance <= geofenceRadius;
-
-   const attendanceStatus = isInside ? 'check-in' : 'check-out';
-
-    let exist = await Attendances.findOne({ userName, date });
+    // Step 5: Check for existing attendance
+    const exist = await Attendances.findOne({ userName, date });
     if (exist) {
       return res.status(400).json({ message: "Attendance already exists for this user on this date" });
     }
+
+    // Step 6: Geofencing
+    const geofenceCenter = { latitude: 22.544384, longitude: 88.358912 };
+    const geofenceRadius = 10000;
+    const distance = geolib.getDistance(userLocation, geofenceCenter);
+    const isInside = distance <= geofenceRadius;
+
+    // Step 7: Save attendance
+    const attendanceStatus = isInside ? 'check-in' : 'check-out';
+
     const attendance = new Attendances({
       userName,
       date,
       status: attendanceStatus,
-      time: new Date(time),
+      time: time,
       locationLogs,
       locationName,
       month,
@@ -69,13 +69,24 @@ async function markAttendances(req, res) {
     });
 
     await attendance.save();
-    return res.status(200).json({ message: " Attendance marked successfully" });
+
+    const message = isInside
+  ? "Attendance marked successfully"
+  : "Attendance marked successfully, but user is outside the allowed geofence location.";
+
+
+    return res.status(200).json({
+      message,
+      status: attendanceStatus,
+      distance,
+    });
 
   } catch (err) {
     console.error("Attendance Error:", err);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 }
+
 
 //get all data
 
@@ -183,13 +194,34 @@ async function monthYearUsername (req, res) {
     if (!existing) {
       return res.status(400).json({ message: "Attendence not exists for this user" });
     }
-    res.status(201).json({existing});
+    res.status(201).json(existing);
 
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal Server Error" });
   }
 }
+
+async function daymonthYearUsername (req, res) {
+  const {userName,month,year,date} = req.body;
+
+  if (!userName|| !month || !year) {
+    return res.status(400).json({ message: "Missing required fields" });
+  }
+
+  try {
+    const existing = await Attendances.findOne({userName,month,year,date});
+    if (!existing) {
+      return res.status(400).json({ message: "Attendence not exists for this user" });
+    }
+    res.status(201).json(existing);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
 
 async function GetDataBYDay(req,res){
   const {date}=req.body;
@@ -207,4 +239,4 @@ async function GetDataBYDay(req,res){
 
 
 module.exports = { markAttendances,getAllAttendance,monthAttendance,yearAttendances,getUserDatas,
-        monthYearAttendance,monthYearUsername,GetDataBYDay };
+        monthYearAttendance,monthYearUsername,GetDataBYDay,daymonthYearUsername };
