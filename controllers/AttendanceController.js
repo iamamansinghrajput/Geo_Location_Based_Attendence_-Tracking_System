@@ -61,7 +61,7 @@ async function markAttendances(req, res) {
       userName,
       date,
       status: attendanceStatus,
-      time: new Date(time),
+      time: time,
       locationLogs,
       locationName,
       month,
