@@ -48,7 +48,7 @@ api.post("/register", async (req, res) => {
     res.status(201).json(user);
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ message: "Internal Server Error" });
+    return res.status(500).json({ message: err });
   }
 });
 
