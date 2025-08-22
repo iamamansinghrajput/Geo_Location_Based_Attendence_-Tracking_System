@@ -68,7 +68,7 @@ async function findLeaveRequestByProvidedId (req, res) {
 // In thas function updates the leave request and sets status to "Approved"
 async function approveLeaveRequest (req, res) {
     try {
-        let { approvalStatus, adminNote, adminId } = req.body;
+        let { approvalStatus,  adminId } = req.body;
         
         /*
         if(approvalStatus !== "Approved") {
@@ -76,7 +76,7 @@ async function approveLeaveRequest (req, res) {
         }
         */
 
-        let updatesLeaveRequest = await employeeLeaveRequest.findByIdAndUpdate( req.params.id, { approvalStatus, adminNote, adminId },{ new: true } );
+        let updatesLeaveRequest = await employeeLeaveRequest.findByIdAndUpdate( req.params.id, { approvalStatus, adminId },{ new: true } );
 
         
         if (!updatesLeaveRequest) {
@@ -94,7 +94,7 @@ async function approveLeaveRequest (req, res) {
 //  Reject The Leave request on this Function
 async function rejectLeaveRequest(req, res) {
     try {
-        let { approvalStatus, adminNote, adminId } = req.body;
+        let { approvalStatus,  adminId } = req.body;
 
         let rejectRequest = await employeeLeaveRequest.findByIdAndUpdate ( req.params.id, { approvalStatus, adminNote, adminId }, { new: true } );
 
