@@ -6,7 +6,7 @@ const userAuthenticationValidation = require("../Middleware/adminAuthentication"
 
 api.post("/addCalender",monthlyCalanders);
 api.post("/updateCalender",updateCalender);
-api.delete("/DeleteCalender", userAuthenticationValidation, deletecalender);
-api.post("/assignRoles", userAuthenticationValidation, changeRoles);
+api.delete("/DeleteCalender", deletecalender);
+api.post("/assignRoles", changeRoles);
 
 module.exports = api;
