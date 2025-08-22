@@ -9,7 +9,7 @@ api.post("/markAttendance",markAttendances);
 api.get("/getAllAttendance",getAllAttendance);
 api.get("/getAllAttendanceByMonth",monthAttendance);
 api.get("/getAllAttendanceByYear",yearAttendances);
-api.get("/getAllAttendanceByUsername",employeeMiddleware,getUserDatas);
+api.get("/getAllAttendanceByUsername",getUserDatas);
 api.get("/getAllAttendanceByMonthAndYear",monthYearAttendance);
 api.post("/getAttendanceByUsernameWithMonthAndYear",monthYearUsername);
 api.post("/getAttendanceByUsernameWithDayMonthAndYear",daymonthYearUsername);
