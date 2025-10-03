@@ -5,7 +5,6 @@ const geolib = require("geolib");
 //Create an api to continuous time, status and location in a particular users particular days attendance
 async function liveTracking(req, res) {
   const { userName, date, time, locationLogs } = req.body;
-
   try {
     const checkUser = await Attendances.findOne({ userName, date });
 
@@ -13,12 +12,9 @@ async function liveTracking(req, res) {
       return res.status(400).json({ message: "Particular day user attendance does not exist" });
     }
 
-    const geofenceCenter = {
-      latitude: 22.5726,
-      longitude: 88.3639
-    };
+    const geofenceCenter = { latitude: 22.544384, longitude: 88.358912 };
 
-    const geofenceRadius = 100;
+    const geofenceRadius = 10000;
     const userLocation = locationLogs[0];
 
     if (!userLocation || !userLocation.latitude || !userLocation.longitude) {
@@ -31,7 +27,7 @@ async function liveTracking(req, res) {
     const attendanceStatus = isInside ? 'check-in' : 'check-out';
 
     checkUser.status.push(attendanceStatus);
-    checkUser.time.push(new Date(time));
+    checkUser.time.push(time);
     checkUser.locationLogs.push(userLocation); 
 
     await checkUser.save();

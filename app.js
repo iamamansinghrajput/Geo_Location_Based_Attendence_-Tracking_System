@@ -19,7 +19,7 @@ const app = express();
 const port = 3005;
  
 app.use(cors({
-  origin: ["http://localhost:5173"], 
+  origin: ["http://localhost:5173","http://localhost:8081"], 
   credentials: true,
 }));
 app.use(express.json());
@@ -36,11 +36,11 @@ app.use('/api', leaveRequestRoutes);
 app.use('/api', monthlyReportRoutes);
 app.use('/api', resignationRoutes);
 app.use('/api',userMonthReport);
-//app.use('/api',adminRoutes);
-//app.use('/api',genralDataRoutes);
-//app.use('/api',attendanceRoutes);
-//app.use('/api',noticeRouter);
-//app.use('/api',trackingRoutes);
+app.use('/api',adminRoutes);
+app.use('/api',genralDataRoutes);
+app.use('/api',attendanceRoutes);
+app.use('/api',noticeRouter);
+app.use('/api',trackingRoutes);
 
 
 app.listen(port, () =>{

@@ -32,14 +32,21 @@ async function findSpecificMonthReportOfUsers(req, res) {
     let { month, year } = req.params;
 
     try {
-        let specificMonthReportofUsers = await monthlyAttendanceReport.find ( {  month, year } );
+        let specificMonthReportofUsers = await monthlyAttendanceReport.find({ month, year });
 
-        res.json("Report of Users of specific Month of year", specificMonthReportofUsers);
+        res.json({
+            message: "Report of Users of specific Month of year",
+            data: specificMonthReportofUsers
+        });
     }
     catch (error) {
-        res.json("error", error)
+        res.status(500).json({
+            message: "Error while fetching reports",
+            error: error.message
+        });
     }
 }
+
 
 // In this Function Find Specific User Report of Specific Month of year
 async function findSpecificMonthReportThrouthUsername(req, res) {

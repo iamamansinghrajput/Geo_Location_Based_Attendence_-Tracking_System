@@ -8,14 +8,16 @@ const employeeLeaveRequest = require("../models/employeeLeaveRequest");
 // app.post('/addLeaveRequest', employeeAddLeaveRequest);
 async function employeeAddLeaveRequest (req, res) {
     try {
-        let { userId, startingDate, endingDate, reason, requestedDate, message } = req.body;
+        let { userId,userName, title,leaveType,startingDate, endingDate, message, number} = req.body;
         let leaveRequest = new employeeLeaveRequest ( {
             userId,
+            userName,
+            title,
+            leaveType,
             startingDate,
             endingDate,
-            reason,
-            requestedDate,
-            message    
+            message,
+            number,      
         } );
     
         await leaveRequest.save();
@@ -66,7 +68,7 @@ async function findLeaveRequestByProvidedId (req, res) {
 // In thas function updates the leave request and sets status to "Approved"
 async function approveLeaveRequest (req, res) {
     try {
-        let { approvalStatus, adminNote, adminId } = req.body;
+        let { approvalStatus,  adminId } = req.body;
         
         /*
         if(approvalStatus !== "Approved") {
@@ -74,7 +76,7 @@ async function approveLeaveRequest (req, res) {
         }
         */
 
-        let updatesLeaveRequest = await employeeLeaveRequest.findByIdAndUpdate( req.params.id, { approvalStatus, adminNote, adminId },{ new: true } );
+        let updatesLeaveRequest = await employeeLeaveRequest.findByIdAndUpdate( req.params.id, { approvalStatus, adminId },{ new: true } );
 
         
         if (!updatesLeaveRequest) {
@@ -92,7 +94,7 @@ async function approveLeaveRequest (req, res) {
 //  Reject The Leave request on this Function
 async function rejectLeaveRequest(req, res) {
     try {
-        let { approvalStatus, adminNote, adminId } = req.body;
+        let { approvalStatus,  adminId } = req.body;
 
         let rejectRequest = await employeeLeaveRequest.findByIdAndUpdate ( req.params.id, { approvalStatus, adminNote, adminId }, { new: true } );
 
@@ -120,6 +122,28 @@ async function deleteLeaveRequest (req, res) {
     }
 }
 
+async function findLeaveRequestByuserId(req, res) {
+  try {
+    const { userId } = req.body;
+
+    if (!userId) {
+      return res.status(400).json({ message: "User ID is required" });
+    }
+
+    const leaveRequests = await employeeLeaveRequest.find({ userId });
+
+    if (!leaveRequests || leaveRequests.length === 0) {
+      return res.status(404).json({ message: "No leave requests found" });
+    }
+
+    return res.status(200).json(leaveRequests);
+  } catch (error) {
+    console.error("Error fetching leave requests:", error);
+    return res.status(500).json({ message: "Server error", error: error.message });
+  }
+}
+
+
 
 
 // Export all functions
@@ -129,5 +153,6 @@ module.exports = {
     findLeaveRequestByProvidedId,
     approveLeaveRequest,
     rejectLeaveRequest,
-    deleteLeaveRequest
+    deleteLeaveRequest,
+    findLeaveRequestByuserId
 }

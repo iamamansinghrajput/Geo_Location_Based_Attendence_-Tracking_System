@@ -5,6 +5,18 @@ const EmployeeLeaveRequestSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        userName: {
+            type: String,
+            required: true,
+        },
+        title: {
+            type: String,
+            required: true
+        },
+        leaveType: {
+             type: String,
+            required: true
+        },
         startingDate : {
             type: Date,
             required: true
@@ -13,15 +25,18 @@ const EmployeeLeaveRequestSchema = new mongoose.Schema(
             type: Date,
             required: true
         },
-        reason : {
-            type: String,
-            required: true
+        message : {
+            type: String           // User send a note to Admin to Grant his/her Leave
+        },
+        number: {
+            type: Number,
+            required: true,
         },
         approvalStatus : {
             type: String,
             default: 'Pending'
         },
-        adminSendNote : {
+        adminName : {
             type: String
         },
         adminId : {   
@@ -31,9 +46,7 @@ const EmployeeLeaveRequestSchema = new mongoose.Schema(
             type: Date,
             default: Date.now    // Submission_Day date (Automatically Filled)
         },
-        message : {
-            type: String           // User send a note to Admin to Grant his/her Leave
-        }
+        
     }
 )
 let employeeLeaveRequest = mongoose.model('employeeLeaveRequest', EmployeeLeaveRequestSchema);
