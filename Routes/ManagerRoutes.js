@@ -6,6 +6,6 @@
     api.get("/approveRegistration",approvedEmployes);
     api.get("/rejectRegistration",rejectEmployes);
     api.get("/terminateEmployee",terminateEmployes); 
-   api.get("/getEmployeeByUsername", getEmployeeByUsername);
+   api.post("/getEmployeeByUsername", getEmployeeByUsername);
 
     module.exports =api;
