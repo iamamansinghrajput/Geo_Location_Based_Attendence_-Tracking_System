@@ -15,6 +15,27 @@ async function workingEmployes(req, res) {
     }
 }
 
+// Get employee details by userName
+async function getEmployeeByUsername(req, res) {
+    try {
+        const userName = req.query.userName || req.params.userName || req.body.userName;
+
+        if (!userName) {
+            return res.status(400).json({ message: "userName is required" });
+        }
+
+        const user = await userr.findOne({ userName });
+        if (!user) {
+            return res.status(404).json({ message: "user not found" });
+        }
+
+        return res.status(200).json(user);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "internal server error" });
+    }
+}
+
 //Create an api to accept employee registration. API will help to verify the employee registration by changing its status from pending to approved
 
 
@@ -90,4 +111,5 @@ module.exports= {
                 workingEmployes,
                 approvedEmployes,
                 rejectEmployes,
-                terminateEmployes};
+                terminateEmployes,
+                getEmployeeByUsername};
