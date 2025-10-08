@@ -1,4 +1,6 @@
 const userr = require("../models/User");
+const employeeLeaveRequest = require("../models/employeeLeaveRequest");
+const Attendance = require("../models/Attendance");
 
 //create an api to get the list of all pending employee registration
 async function workingEmployes(req, res) {
@@ -30,6 +32,38 @@ async function getEmployeeByUsername(req, res) {
         }
 
         return res.status(200).json(user);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "internal server error" });
+    }
+}
+
+// Get dashboard statistics
+async function getDashboardStats(req, res) {
+    try {
+        // Get today's date in YYYY-MM-DD format
+        const today = new Date().toISOString().split('T')[0];
+        
+        // Get total employees (approved status)
+        const totalEmployees = await userr.countDocuments({ status: "approved" });
+        
+        // Get pending leave requests
+        const pendingLeaveRequests = await employeeLeaveRequest.countDocuments({ approvalStatus: "Pending" });
+        
+        // Get today's attendance count
+        const todayAttendance = await Attendance.countDocuments({ date: today });
+        
+        // Get total approved employees and subtract today's attendance to get absent count
+        const todayAbsent = totalEmployees - todayAttendance;
+        
+        const statsData = [
+            { title: "Total Employee", value: totalEmployees.toString() },
+            { title: "Pending Leave Requests", value: pendingLeaveRequests.toString() },
+            { title: "Today Attendance", value: todayAttendance.toString() },
+            { title: "Today Absent", value: todayAbsent.toString() }
+        ];
+
+        return res.status(200).json(statsData);
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: "internal server error" });
@@ -112,4 +146,5 @@ module.exports= {
                 approvedEmployes,
                 rejectEmployes,
                 terminateEmployes,
-                getEmployeeByUsername};
+                getEmployeeByUsername,
+                getDashboardStats};
