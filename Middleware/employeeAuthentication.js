@@ -1,7 +1,10 @@
 const jwt = require('jsonwebtoken'); 
-const Userr = require('../models/User');
+const User = require('../Models/User');
+const cookieParser = require("cookie-parser"); 
 
-const authenticate = async (req, res, next) => {
+
+
+const employeeAuthenticate = async (req, res, next) => {
     
     try {
         const token = req.cookies.token;
@@ -11,28 +14,18 @@ const authenticate = async (req, res, next) => {
         }
         
         const decoded = jwt.verify(token, 'aman');
-        const user = await Userr.findById(decoded.id);
+        const user = await User.findById(decoded.id);
 
         if (!user) {
-            return res.status(402).json({ message: "Unauthorized" });
+            return res.status(401).json({ message: "Unauthorized" });
         }
-
-        if (user.role !== 'employ') {
-        return res.status(403).json({ message: "Access denied" });
-        }
-
-        if (user.status !== 'approved') {
-        return res.status(403).json({ message: "Access denied" });
-        }
-
-        const {username} = user;
-        req.user = {username};
+        req.user = { userName: user.userName };
         
         next();
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Server error");
     }
-}
+};
 
-module.exports = authenticate;
+exports = module.exports = employeeAuthenticate;

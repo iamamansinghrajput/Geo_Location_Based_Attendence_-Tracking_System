@@ -14,6 +14,8 @@ const genralDataRoutes =require("./Routes/GenralDataRoutes");
 const attendanceRoutes=require("./Routes/AttendanceRoutes");
 const noticeRouter =require("./Routes/NoticeRoutes");
 const trackingRoutes =require("./Routes/TrackingRoutes");
+const imageUpload = require("./Routes/FaceAuthentication");
+const checkuser = require("./Routes/Checkuser");
 const app = express();
  
 const port = 3005;
@@ -41,7 +43,8 @@ app.use('/api',genralDataRoutes);
 app.use('/api',attendanceRoutes);
 app.use('/api',noticeRouter);
 app.use('/api',trackingRoutes);
-
+app.use('/api',imageUpload);
+app.use('/api',checkuser);
 
 app.listen(port, () =>{
     console.log('Server Is running at localhost:'+port)
