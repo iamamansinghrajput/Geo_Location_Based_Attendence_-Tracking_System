@@ -96,7 +96,7 @@ async function rejectLeaveRequest(req, res) {
     try {
         let { approvalStatus,  adminId } = req.body;
 
-        let rejectRequest = await employeeLeaveRequest.findByIdAndUpdate ( req.params.id, { approvalStatus, adminNote, adminId }, { new: true } );
+        let rejectRequest = await employeeLeaveRequest.findByIdAndUpdate ( req.params.id, { approvalStatus,adminId }, { new: true } );
 
         if (!rejectRequest) {
             return res.status(404).json("Leave request not found")
