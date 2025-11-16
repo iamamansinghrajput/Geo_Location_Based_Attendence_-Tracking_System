@@ -95,6 +95,8 @@ async function approveLeaveRequest (req, res) {
 async function rejectLeaveRequest(req, res) {
     try {
         let { approvalStatus,  adminId } = req.body;
+        console.log(approvalStatus);
+        console.log(req.params.id)
 
         let rejectRequest = await employeeLeaveRequest.findByIdAndUpdate ( req.params.id, { approvalStatus,adminId }, { new: true } );
 
