@@ -45,6 +45,7 @@ router.post('/upload',authenticate, upload.single('profilePic'), async (req, res
       userName: req.user.userName,
       imageUrl: result.secure_url,
     }
+    console.log(imageUrl);
 
     // Save image URL to the database
     const existingImage = await imageModel.findOne({ userName: req.user.userName });

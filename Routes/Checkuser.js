@@ -3,6 +3,8 @@ const fetch = require('node-fetch');
 const FormData = require('form-data');
 const multer = require('multer');
 const imageModel = require('../models/Image');
+const Authentication = require('../Middleware/employeeAuthentication')
+
 
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() }); 
@@ -10,7 +12,8 @@ const upload = multer({ storage: multer.memoryStorage() });
 router.post('/checkuser', upload.single('File'), async (req, res) => {
     console.log("test");
     try {
-        const { userName } = req.body;
+   
+        const userName = "debabratodas";
         const uploadedFile = req.file;
 
         const existingImage = await imageModel.findOne({ userName });
@@ -19,6 +22,7 @@ router.post('/checkuser', upload.single('File'), async (req, res) => {
         }
 
         const imageUrl = existingImage.imageUrl;
+        console.log(imageUrl);
 
         // Prepare form-data to send to Flask API
         const formData = new FormData();

@@ -4,6 +4,6 @@ const {liveTracking,CurrentLocations,totralHours} = require("../controllers/Trac
 const employeeMiddleware = require("../Middleware/employeeAuthentication");
 
 api.post("/liveTracking",liveTracking);
-api.get("/currentLocation",CurrentLocations);
+api.post("/currentLocation",CurrentLocations);
 api.get("/workingHours",totralHours);
 module.exports=api;
