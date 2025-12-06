@@ -57,22 +57,23 @@ async function markAttendances(req, res) {
     // Step 7: Save attendance
     const attendanceStatus = isInside ? 'check-in' : 'check-out';
 
-    const attendance = new Attendances({
-      userName,
-      date,
-      status: attendanceStatus,
-      time: time,
-      locationLogs,
-      locationName,
-      month,
-      year
-    });
+    if(isInside === true){
+        const attendance = new Attendances({
+        userName,
+        date,
+        status: attendanceStatus,
+        time: time,
+        locationLogs,
+        locationName,
+        month,
+        year
+      });
 
-    await attendance.save();
-
+      await attendance.save();
+    }
     const message = isInside
   ? "Attendance marked successfully"
-  : "Attendance marked successfully, but user is outside the allowed geofence location.";
+  : "user is outside the allowed geofence location.";
 
 
     return res.status(200).json({
