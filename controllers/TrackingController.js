@@ -32,7 +32,7 @@ async function liveTracking(req, res) {
 
     await checkUser.save();
 
-    return res.status(200).json(checkUser);
+    return res.status(200).json({Status: "Location logged successfully", status: attendanceStatus, distance:distance  });
 
   } catch (error) {
     console.error(error);
