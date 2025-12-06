@@ -10,10 +10,9 @@ const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() }); 
 
 router.post('/checkuser', upload.single('File'), async (req, res) => {
-    console.log("test");
     try {
    
-        const userName = "debabratodas";
+        const userName = req.body.userName;
         const uploadedFile = req.file;
 
         const existingImage = await imageModel.findOne({ userName });
