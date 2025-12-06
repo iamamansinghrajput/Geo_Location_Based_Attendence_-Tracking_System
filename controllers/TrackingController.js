@@ -14,7 +14,7 @@ async function liveTracking(req, res) {
 
     const geofenceCenter = { latitude: 22.544384, longitude: 88.358912 };
 
-    const geofenceRadius = 10000;
+    const geofenceRadius = 500;
     const userLocation = locationLogs[0];
 
     if (!userLocation || !userLocation.latitude || !userLocation.longitude) {
