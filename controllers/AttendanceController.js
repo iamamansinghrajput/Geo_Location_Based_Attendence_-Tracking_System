@@ -49,7 +49,7 @@ async function markAttendances(req, res) {
     }
 
     // Step 6: Geofencing
-    const geofenceCenter = { latitude: 22.526474, longitude: 88.416047 };
+    const geofenceCenter = { latitude: 22.516741683754145, longitude: 88.41844651035316 }; //ict building = 22.516741683754145, 88.41844651035316
     const geofenceRadius = 500;
     const distance = geolib.getDistance(userLocation, geofenceCenter);
     const isInside = distance <= geofenceRadius;
