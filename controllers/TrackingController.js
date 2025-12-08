@@ -12,7 +12,7 @@ async function liveTracking(req, res) {
       return res.status(400).json({ message: "Particular day user attendance does not exist" });
     }
 
-    const geofenceCenter = { latitude: 22.544384, longitude: 88.358912 };
+    const geofenceCenter = { latitude: 22.526474, longitude: 88.416047 };
 
     const geofenceRadius = 500;
     const userLocation = locationLogs[0];
