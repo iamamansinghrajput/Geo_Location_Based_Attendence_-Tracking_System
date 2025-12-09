@@ -16,6 +16,7 @@ const noticeRouter =require("./Routes/NoticeRoutes");
 const trackingRoutes =require("./Routes/TrackingRoutes");
 const imageUpload = require("./Routes/FaceAuthentication");
 const checkuser = require("./Routes/Checkuser");
+const ipRoutes = require("./Routes/IpRoutes");
 const app = express();
  
 const port = 3005;
@@ -45,6 +46,7 @@ app.use('/api',noticeRouter);
 app.use('/api',trackingRoutes);
 app.use('/api',imageUpload);
 app.use('/api',checkuser);
+app.use('/api', ipRoutes);
 
 app.listen(port, () =>{
     console.log('Server Is running at localhost:'+port)
